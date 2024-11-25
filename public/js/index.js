@@ -80,7 +80,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
 
             for(let i=0; i<obj21.length; i++) {
                 if (obj21[i].itemName == name && obj21[i].itemWeight == weight) {
-                    obj21[i].itemUnit = parseInt(obj21[i].itemUnit) + parseInt(unit)
+                    obj21[i].itemUnit = parseFloat(obj21[i].itemUnit) + parseFloat(unit)
                     found = true
                 }
             }
@@ -112,7 +112,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
 
             for(let i=0; i<obj22.length; i++) {
                 if (obj22[i].itemName == name && obj22[i].itemWeight == weight) {
-                    obj22[i].itemUnit = parseInt(obj22[i].itemUnit) + parseInt(unit)
+                    obj22[i].itemUnit = parseFloat(obj22[i].itemUnit) + parseFloat(unit)
                     found = true
                 }
             }
@@ -144,7 +144,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
 
             for(let i=0; i<obj23.length; i++) {
                 if (obj23[i].itemName == name && obj23[i].itemWeight == weight) {
-                    obj23[i].itemUnit = parseInt(obj23[i].itemUnit) + parseInt(unit)
+                    obj23[i].itemUnit = parseFloat(obj23[i].itemUnit) + parseFloat(unit)
                     found = true
                 }
             }
@@ -176,7 +176,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
 
             for(let i=0; i<obj24.length; i++) {
                 if (obj24[i].itemName == name && obj24[i].itemWeight == weight) {
-                    obj24[i].itemUnit = parseInt(obj24[i].itemUnit) + parseInt(unit)
+                    obj24[i].itemUnit = parseFloat(obj24[i].itemUnit) + parseFloat(unit)
                     found = true
                 }
             }
