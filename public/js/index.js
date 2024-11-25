@@ -244,7 +244,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
         console.log("a")
         console.log(obj21)
 
-    }, 5000);
+    }, 2000);
 
 }).catch((error) => {
     console.error("Errore durante il caricamento dei dati:", error);
