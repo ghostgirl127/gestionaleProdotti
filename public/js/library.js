@@ -257,9 +257,9 @@ export function updateDatabase(svgIcons) {
         <li>
             <div class="flex-container">
                 <div class="item-id" id="${++bakaSempai}">new</div> 
-                <div class="item-name">${inputOrder.toUpperCase()}</div>
+                <div class="item-name">${inputOrder.toUpperCase().trim()}</div>
                 <div class="item-unit">${inputQuantita}</div>
-                <div class="item-weight">${inputPeso.toUpperCase()}</div>
+                <div class="item-weight">${inputPeso.toUpperCase().trim()}</div>
                 <span class="close">\u00D7</span>
             </div>
         </li>
@@ -295,9 +295,9 @@ export function updateDatabase(svgIcons) {
                 'Content-Type': 'application/json' // Specifica il tipo di contenuto
             },
             body: JSON.stringify({
-                nome: inputOrder.toUpperCase(),
+                nome: inputOrder.toUpperCase().trim(),
                 quantita: inputQuantita,
-                peso: inputPeso.toUpperCase(),
+                peso: inputPeso.toUpperCase().trim(),
                 date: inputDate
             })
         })
