@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+
+    <script type="module" src="js/index.js" defer></script>
+    <script type="module" src="js/eventListeners/addNewElement.js" defer></script>
+    <script src="js/eventListeners/inputReminderLogic.js" defer></script>
+    <script type="module" src="js/eventListeners/menuTendina.js" defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Gestionale Ordini</h1>
+        <div class="flex-container" id="dataForm" action="/submit" method="POST">
+            <input type="text" id="order" name="order" placeholder="Inserisci l'ordine">
+            <div id="peso-container">
+                <input type="number" id="quantita" name="quantita" min="0" max="100" placeholder="Q.ta:" />
+                <select id="peso" name="peso">
+                    <option value="Peso" selected="selected" disabled>Peso</option>
+                    <option value="kg">Kg.</option>
+                    <option value="pz">Pz.</option>
+                    <option value="cest.">Cest.</option>
+                    <option value="cassa">Casse</option>
+                    <option value=""></option>
+                </select>
+            </div>
+            <select id="date" name="date">
+                <option selected="selected" value="d21">21/12/2024</option>
+                <option value="d22">22/12/2024</option>
+                <option value="d23">23/12/2024</option>
+                <option value="d24">24/12/2024</option>
+            </select>
+            <button id="addBtn" type="submit">Aggiungi</button>
+        </div>
+    </div>
+
+    <main>
+        <h2 id="d21-header">
+            <span class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5">
+                    </path>
+                </svg>
+            </span>
+            21/12/2024
+            <input type="number" class="last" id="last21" name="last21" min="0" placeholder="N" />
+        </h2>
+        <ul class="hidden" id="d21-container"></ul>
+        <ul class="hidden" id="d21-result" style="text-align: center; background-color: rgb(71, 195, 71);"></ul>
+
+        <h2 id="d22-header">
+            <span class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5">
+                    </path>
+                </svg>
+            </span>
+            22/12/2024
+            <input type="number" class="last" id="last22" name="last22" min="0" placeholder="N" />
+        </h2>
+        <ul class="hidden" id="d22-container"></ul>
+        <ul class="hidden" id="d22-result" style="text-align: center; background-color: rgb(71, 195, 71);"></ul>
+
+        <h2 id="d23-header">
+            <span class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5">
+                    </path>
+                </svg>
+            </span>
+            23/12/2024
+            <input type="number" class="last" id="last23" name="last23" min="0" placeholder="N" />
+        </h2>
+        <ul class="hidden" id="d23-container"></ul>
+        <ul class="hidden" id="d23-result" style="text-align: center; background-color: rgb(71, 195, 71);"></ul>
+
+        <h2 id="d24-header">
+            <span class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5">
+                    </path>
+                </svg>
+            </span>
+            24/12/2024
+            <input type="number" class="last" id="last24" name="last24" min="0" placeholder="N" />
+        </h2>
+        <ul class="hidden" id="d24-container"></ul>
+        <ul class="hidden" id="d24-result" style="text-align: center; background-color: rgb(71, 195, 71);"></ul>
+    </main>
+
+</body>
+
+</html>
