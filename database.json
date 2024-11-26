@@ -1,37 +1,11 @@
 {
-  "ordini21": [
-    {
-      "id": 0,
-      "nome": "MORTADELLA",
-      "quantita": 4,
-      "peso": "KG"
-    },
-    {
-      "id": 3,
-      "nome": "OLIVE VERDI",
-      "quantita": 10,
-      "peso": "CEST."
-    },
-    {
-      "id": 4,
-      "nome": "OLIVE VERDI",
-      "quantita": 120,
-      "peso": "CEST."
-    }
-  ],
+  "ordini21": [],
   "ordini22": [],
-  "ordini23": [
-    {
-      "id": 1,
-      "nome": "PANE",
-      "quantita": 10,
-      "peso": "CASSA"
-    }
-  ],
+  "ordini23": [],
   "ordini24": [],
   "last21": 0,
   "last22": 0,
   "last23": 0,
   "last24": 0,
-  "lastId": 4
+  "lastId": -1
 }
