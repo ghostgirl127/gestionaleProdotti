@@ -8,9 +8,6 @@ const svgIcons = lib.importSvgIcons();
 lib.loadDataFromDB(svgIcons).then(() => {
 
     lib.addDeleteListeners();  // Aggiungi i listener per il pulsante "X"
-    //lib.addEditListeners();  // Aggiungi i listener per il pulsante "edit"
-    //lib.addCheckedListeners()
-
 
     setInterval(() => {
 
@@ -190,6 +187,26 @@ lib.loadDataFromDB(svgIcons).then(() => {
             }) 
         }
 
+        if (obj21)
+            obj21.sort((a, b) => {
+                return a.itemName.localeCompare(b.itemName);
+            });
+
+        if (obj22)
+            obj22.sort((a, b) => {
+                return a.itemName.localeCompare(b.itemName);
+            });
+
+        if (obj23)    
+            obj23.sort((a, b) => {
+                return a.itemName.localeCompare(b.itemName);
+            });
+
+        if (obj24)    
+            obj24.sort((a, b) => {
+                return a.itemName.localeCompare(b.itemName);
+            });
+
         d21r.innerHTML = ""
 
         if(obj21) {
@@ -198,7 +215,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
                 d21r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
                             <div class="item-name">${obj.itemName}</div>
-                            <div class="item-unit" style="width: 50%">Peso: ${obj.itemUnit} ${obj.itemWeight}</div>
+                            <div class="item-unit" style="width: 50%">${obj.itemUnit} ${obj.itemWeight}</div>
                     </div>
                 `
             });
@@ -210,7 +227,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
                 d22r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
                             <div class="item-name">${obj.itemName}</div>
-                            <div class="item-unit" style="width: 50%">Peso: ${obj.itemUnit} ${obj.itemWeight}</div>
+                            <div class="item-unit" style="width: 50%">${obj.itemUnit} ${obj.itemWeight}</div>
                     </div>
                 `
             });
@@ -222,7 +239,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
                 d23r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
                             <div class="item-name">${obj.itemName}</div>
-                            <div class="item-unit" style="width: 50%">Peso: ${obj.itemUnit} ${obj.itemWeight}</div>
+                            <div class="item-unit" style="width: 50%">${obj.itemUnit} ${obj.itemWeight}</div>
                     </div>
                 `
             });
@@ -235,18 +252,13 @@ lib.loadDataFromDB(svgIcons).then(() => {
                 d24r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
                             <div class="item-name">${obj.itemName}</div>
-                            <div class="item-unit" style="width: 50%">Peso: ${obj.itemUnit} ${obj.itemWeight}</div>
+                            <div class="item-unit" style="width: 50%">${obj.itemUnit} ${obj.itemWeight}</div>
                     </div>
                 `
             });
         }
-
-        console.log("a")
-        console.log(obj21)
-
     }, 2000);
 
 }).catch((error) => {
     console.error("Errore durante il caricamento dei dati:", error);
 });
-
