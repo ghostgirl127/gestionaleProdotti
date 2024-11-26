@@ -16,58 +16,34 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.post('/aggiorna-valore21', async (req, res) => {
+app.post('/aggiorna-valore/:id', async (req, res) => {
   try {
       // Ottieni il nuovo valore
-      const valore = parseInt(req.body.valore);  // Converti il valore in un numero intero
+      const { id } = req.params;
+      const valore = parseFloat(req.body.valore);  // Converti il valore in un numero intero
 
       // Leggi il database esistente
       let database = await leggiDatabase();
 
       // Aggiungi il valore alla proprietà "numero"
-      database.last21 = valore;
+      switch(id) {
+        case "21":
+          database.last21 = valore;
+          break;
+        
+        case "22":
+          database.last22 = valore;
+          break;
 
-      // Scrivi il nuovo database nel file
-      await scriviDatabase(database);
+        case "23":
+          database.last23 = valore;
+          break;
 
-      // Rispondi al client
-      res.json({ status: 'success', message: 'Valore aggiornato', nuovo_valore: database.numero });
-  } catch (err) {
-      console.error('Errore:', err);
-      res.status(500).json({ status: 'error', message: 'Errore nel server' });
-  }
-});
-app.post('/aggiorna-valore22', async (req, res) => {
-  try {
-      // Ottieni il nuovo valore
-      const valore = parseInt(req.body.valore);  // Converti il valore in un numero intero
-
-      // Leggi il database esistente
-      let database = await leggiDatabase();
-
-      // Aggiungi il valore alla proprietà "numero"
-      database.last22 = valore;
-
-      // Scrivi il nuovo database nel file
-      await scriviDatabase(database);
-
-      // Rispondi al client
-      res.json({ status: 'success', message: 'Valore aggiornato', nuovo_valore: database.numero });
-  } catch (err) {
-      console.error('Errore:', err);
-      res.status(500).json({ status: 'error', message: 'Errore nel server' });
-  }
-});
-app.post('/aggiorna-valore23', async (req, res) => {
-  try {
-      // Ottieni il nuovo valore
-      const valore = parseInt(req.body.valore);  // Converti il valore in un numero intero
-
-      // Leggi il database esistente
-      let database = await leggiDatabase();
-
-      // Aggiungi il valore alla proprietà "numero"
-      database.last23 = valore;
+        case "24":
+          database.last24 = valore;
+          break;
+      }
+      
 
       // Scrivi il nuovo database nel file
       await scriviDatabase(database);
@@ -84,14 +60,9 @@ app.post('/update-valore', async (req, res) => {
   try {
     // Ottieni il nuovo valore
     const nome = req.body.nome;
-    const quantita = parseInt(req.body.quantita);
+    const quantita = parseFloat(req.body.quantita);
     const peso = req.body.peso;
     const date = req.body.date;
-
-    console.log(nome)
-    console.log(quantita)
-    console.log(peso)
-    console.log(date)
 
     let database = await leggiDatabase();
 
@@ -104,25 +75,17 @@ app.post('/update-valore', async (req, res) => {
       peso: peso
     }
 
-    if (date == "d21") {
+    if (date == "d21")
       database.ordini21.push(obj)
-    }
-    if (date == "d22") {
+    if (date == "d22")
       database.ordini22.push(obj)
-    }
-    if (date == "d23") {
+    if (date == "d23")
       database.ordini23.push(obj)
-    }
-    if (date == "d24") {
+    if (date == "d24")
       database.ordini24.push(obj)
-    }
 
     await scriviDatabase(database);
 
-
-
-
-    
 } catch (err) {
     console.error('Errore:', err);
     res.status(500).json({ status: 'error', message: 'Errore nel server' });
@@ -133,8 +96,6 @@ app.post('/delete-valore', async (req, res) => {
   try {
     // Ottieni il nuovo valore
     const valore = parseInt(req.body.valore);  // Converti il valore in un numero intero
-
-    console.log(valore)
 
     // Leggi il database esistente
     let database = await leggiDatabase();
@@ -161,8 +122,7 @@ app.post('/delete-valore', async (req, res) => {
     }
   }
     
-    // Scrivi il nuovo database nel file
-    await scriviDatabase(database);
+  await scriviDatabase(database);
 
     
 } catch (err) {
@@ -170,28 +130,6 @@ app.post('/delete-valore', async (req, res) => {
     res.status(500).json({ status: 'error', message: 'Errore nel server' });
 }
 })
-app.post('/aggiorna-valore24', async (req, res) => {
-  try {
-      // Ottieni il nuovo valore
-      const valore = parseInt(req.body.valore);  // Converti il valore in un numero intero
-
-
-      // Leggi il database esistente
-      let database = await leggiDatabase();
-
-      // Aggiungi il valore alla proprietà "numero"
-      database.last24 = valore;
-
-      // Scrivi il nuovo database nel file
-      await scriviDatabase(database);
-
-      // Rispondi al client
-      res.json({ status: 'success', message: 'Valore aggiornato', nuovo_valore: database.numero });
-  } catch (err) {
-      console.error('Errore:', err);
-      res.status(500).json({ status: 'error', message: 'Errore nel server' });
-  }
-});
 
 // Route per fornire i dati JSON (se desideri fare una richiesta AJAX)
 app.get("/data", (req, res) => {
@@ -209,64 +147,9 @@ app.get("/data", (req, res) => {
   });
 });
 
-// Endpoint per ricevere i dati dal form
-app.post("/submit", (req, res) => {
-  const { order, quantita, peso, data } = req.body;
-
-  if (data === undefined) {
-    const oggi = new Date();
-    const giorno = oggi.getDate();
-    const mese = oggi.getMonth() + 1; // i mesi partono da 0 (gennaio è 0)
-    const anno = oggi.getFullYear();
-
-    const dataFormattata = `${formatToTwoDigits(giorno)}/${formatToTwoDigits(
-      mese
-    )}/${anno}`;
-    console.log(dataFormattata);
-
-    number < 10 ? `0${number}` : number;
-
-    data = dataFormattata;
-    console.log(data);
-  }
-
-  // Mostra i dati ricevuti nel server (console)
-  console.log("Dati ricevuti dal form:", { order, quantita, peso, data });
-
-  // Carica i dati esistenti dal file JSON
-  const filePath = path.join(__dirname, "data.json"); // Percorso del file JSON
-  fs.readFile(filePath, "utf8", (err, dataFromFile) => {
-    if (err) {
-      return res.status(500).send("Errore nella lettura del file JSON");
-    }
-
-    // Parso i dati JSON esistenti
-    let dataObj = JSON.parse(dataFromFile);
-
-    // Aggiungi i nuovi dati all'array di ordini
-    const newOrder = { nome, quantita, peso, data };
-    dataObj.ordini.push(newOrder);
-
-    // Scrivo il nuovo oggetto JSON nel file
-    fs.writeFile(filePath, JSON.stringify(dataObj, null, 2), (err) => {
-      if (err) {
-        return res.status(500).send("Errore nel salvataggio dei dati");
-      }
-
-      // Risposta al client con i dati aggiunti
-      res.send(`<h2>Dati ricevuti e aggiunti con successo:</h2>
-                      <p>Nome: ${nome}</p>
-                      <p>Quantità: ${quantita}</p>
-                      <p>Peso: ${peso}</p>
-                      <p>Data: ${data}</p>`);
-    });
-  });
-});
-
 app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);
 });
-
 
 // Funzione per leggere il file JSON
 function leggiDatabase() {
