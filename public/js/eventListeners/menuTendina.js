@@ -7,7 +7,7 @@ const d24Header = document.querySelector('#d24-header')
 
 const svgIcons = importSvgIcons();
 
-function freeSex(e, el, res, header) {
+function free(e, el, res, header) {
 
     if (event.target.tagName === "INPUT") {
         // Se è un input, non fare nulla e ritorna
@@ -30,26 +30,26 @@ d21Header.addEventListener("click", (e) => {
 
     const element = document.querySelector("#d21-container")
     const res = document.querySelector("#d21-result")
-    freeSex(e, element, res, d21Header)
+    free(e, element, res, d21Header)
 });
 
 d22Header.addEventListener("click", (e) => {
 
     const element = document.querySelector("#d22-container")
     const res = document.querySelector("#d22-result")
-    freeSex(e, element, res, d22Header)
+    free(e, element, res, d22Header)
 });
 
 d23Header.addEventListener("click", (e) => {
 
     const element = document.querySelector("#d23-container")
     const res = document.querySelector("#d23-result")
-    freeSex(e, element, res, d23Header)
+    free(e, element, res, d23Header)
 });
 
 d24Header.addEventListener("click", (e) => {
 
     const element = document.querySelector("#d24-container")
     const res = document.querySelector("#d24-result")
-    freeSex(e, element, res, d24Header)
+    free(e, element, res, d24Header)
 });
