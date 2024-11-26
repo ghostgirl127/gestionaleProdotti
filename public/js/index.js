@@ -210,7 +210,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
         d21r.innerHTML = ""
 
         if(obj21) {
-            d21r.innerHTML += "<h3 style='background-color: #00FF00'>Somma</h3>"
+            d21r.innerHTML += "<h3 style='background-color: rgb(71, 195, 71);'>Somma</h3>"
             obj21.forEach(obj => {
                 d21r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
@@ -222,7 +222,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
         }
         d22r.innerHTML = ""
         if(obj22) {
-            d22r.innerHTML += "<h3 style='background-color: #00FF00'>Somma</h3>"
+            d22r.innerHTML += "<h3 style='background-color: rgb(71, 195, 71);'>Somma</h3>"
             obj22.forEach(obj => {
                 d22r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
@@ -234,7 +234,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
         }
         d23r.innerHTML = ""
         if(obj23) {
-            d23r.innerHTML += "<h3 style='background-color: #00FF00'>Somma</h3>"
+            d23r.innerHTML += "<h3 style='background-color: rgb(71, 195, 71);'>Somma</h3>"
             obj23.forEach(obj => {
                 d23r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
@@ -247,7 +247,7 @@ lib.loadDataFromDB(svgIcons).then(() => {
         d24r.innerHTML = ""
 
         if(obj24) {
-            d24r.innerHTML += "<h3 style='background-color: #00FF00'>Somma</h3>"
+            d24r.innerHTML += "<h3 style='background-color: rgb(71, 195, 71);'>Somma</h3>"
             obj24.forEach(obj => {
                 d24r.innerHTML += `
                     <div class="flex-container" style="justify-content: center;">
