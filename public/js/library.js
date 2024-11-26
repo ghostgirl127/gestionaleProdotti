@@ -71,8 +71,6 @@ export async function loadDataFromDB(svgIcons) {
         const ordini22 = data.ordini22
         const ordini23 = data.ordini23
         const ordini24 = data.ordini24
-
-        let counter = 0
         
         for (let i = 0; ordini21[i]; i++) {
 
@@ -109,6 +107,8 @@ export async function loadDataFromDB(svgIcons) {
         }
 
         for (let i = 0; ordini23[i]; i++) {
+
+            console.log(i)
 
             if (ordini23 == []) break;
 
@@ -151,7 +151,13 @@ export function addDeleteListeners() {
     const list = document.querySelector('main'); // Seleziona l'intera lista
 
     list.addEventListener('click', function (event) {
+
         if (event.target.classList.contains('close')) {
+
+            const conferma = confirm("Sei sicuro di voler eliminare questo elemento?");
+
+            if(!conferma) return;
+
             const li = event.target.closest('li'); // Trova il genitore più vicino
             var ulElement = event.target.closest('ul').id;
 
@@ -170,66 +176,9 @@ export function addDeleteListeners() {
                         valore: val
                     })
                 })
-                .then(response => response.json())  // Gestisci la risposta
-                .then(data => {
-                    console.log('Risposta del server:', data);
-                })
-                .catch(error => {
-                    console.error('Errore:', error);
-                });
             }
         }
     });
-}
-
-export function addEditListeners() {
-    const list = document.querySelector('main'); // Seleziona l'intera lista
-
-    // Usa un unico event listener per gestire gli eventi sui pulsanti edit
-    list.addEventListener('click', function (event) {
-        if (event.target.classList.contains('edit')) {  // Se il target è un pulsante di modifica
-            const li = event.target.closest('li');  // Trova il genitore <li> più vicino
-            const itemName = li.querySelector('.item-name').textContent;  // Ottieni il nome dell'elemento
-            const itemUnit = li.querySelector('.item-unit').textContent;
-            const itemWeight = li.querySelector('.item-weight').textContent;
-
-            let newName = prompt("Modifica nome prodotto:", itemName);
-            if (newName == null || newName.trim() === "") {
-                newName = itemName  // Se l'utente cancella o non inserisce nulla, mantieni il nome originale
-            }
-            li.querySelector('.item-name').textContent = newName;  // Aggiorna il nome
-
-            newName = prompt("Modifica quantità:", itemUnit);
-            if (newName == null || newName.trim() === "") {
-                newName = itemUnit;  // Se l'utente cancella o non inserisce nulla, mantieni il nome originale
-            }
-            li.querySelector('.item-unit').textContent = newName;  // Aggiorna il nome
-
-            newName = prompt("Modifica unità di misura prodotto:", itemWeight);
-            if (newName == null || newName.trim() === "") {
-                newName = itemWeight;  // Se l'utente cancella o non inserisce nulla, mantieni il nome originale
-            }
-            li.querySelector('.item-weight').textContent = newName;  // Aggiorna il nome
-        }
-    });
-}
-
-export function addCheckedListeners() {
-    // Aggiungi simbolo "V" quando la riga viene cliccata 
-    const list = document.querySelector('ul');
-    list.addEventListener('click', function (ev) {
-        if (ev.target.tagName === 'LI') {
-            const div = ev.target.querySelector('div');
-            ev.target.classList.toggle('checked');  
-            console.log(ev.target.classList)
-                
-            if (div.style.textDecoration === 'line-through') {
-                div.style.textDecoration = '';  // Rimuove la sottolineatura
-            } else {
-                div.style.textDecoration = 'line-through';  // Aggiunge la sottolineatura
-            }
-        }
-    }, false);
 }
 
 export function updateDatabase(svgIcons) {
@@ -258,7 +207,7 @@ export function updateDatabase(svgIcons) {
             <div class="flex-container">
                 <div class="item-id" id="${++bakaSempai}">new</div> 
                 <div class="item-name">${inputOrder.toUpperCase().trim()}</div>
-                <div class="item-unit">${inputQuantita}</div>
+                <div class="item-unit">${inputQuantita.replace(/,/g, ".")}</div>
                 <div class="item-weight">${inputPeso.toUpperCase().trim()}</div>
                 <span class="close">\u00D7</span>
             </div>
@@ -296,18 +245,11 @@ export function updateDatabase(svgIcons) {
             },
             body: JSON.stringify({
                 nome: inputOrder.toUpperCase().trim(),
-                quantita: inputQuantita,
+                quantita: inputQuantita.replace(/,/g, "."),
                 peso: inputPeso.toUpperCase().trim(),
                 date: inputDate
             })
         })
-        .then(response => response.json())  // Gestisci la risposta
-        .then(data => {
-            console.log('Risposta del server:', data);
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-        });
     
     })
     .catch(error => {
